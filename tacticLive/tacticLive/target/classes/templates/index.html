@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>축구 전술판</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            margin: 0;
+
+            padding: 0;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            height: 100vh;
+
+            background-color: #f0f0f0;
+
+        }
+
+
+
+        .pitch {
+
+            width: 800px;
+
+            height: 500px;
+
+            background-color: #2e8b57;
+
+            border: 5px solid #fff;
+
+            position: relative;
+
+            border-radius: 10px;
+
+        }
+
+
+
+        .goal {
+
+            position: absolute;
+
+            top: 0;
+
+            width: 100%;
+
+            height: 60px;
+
+            background-color: #fff;
+
+            opacity: 0.7;
+
+        }
+
+
+
+        .goal-bottom {
+
+            bottom: 0;
+
+            top: unset;
+
+        }
+
+
+
+        .center-circle {
+
+            position: absolute;
+
+            top: 50%;
+
+            left: 50%;
+
+            width: 150px;
+
+            height: 150px;
+
+            border: 3px solid #fff;
+
+            border-radius: 50%;
+
+            transform: translate(-50%, -50%);
+
+        }
+
+
+
+        .center-spot {
+
+            position: absolute;
+
+            top: 50%;
+
+            left: 50%;
+
+            width: 10px;
+
+            height: 10px;
+
+            background-color: #fff;
+
+            border-radius: 50%;
+
+            transform: translate(-50%, -50%);
+
+        }
+
+        .player {
+
+            width: 35px;
+
+            height: 35px;
+
+
+            position: absolute;
+
+            cursor: pointer;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            color: white;
+
+            font-weight: bold;
+
+        }
+        .point {
+            background-color: white;
+            position: absolute;
+            width: 30px;
+            height: 50px;
+            color: #000;
+        }
+        .chat {
+            background-color: darkgrey;
+            position:absolute;
+            width: 270px;
+            border-radius: 5%;
+            height: 270px;
+            color: #000;
+            text-shadow: 2px 1px grey;
+        }
+
+        .ball {
+            color: black;
+            width: 25px;
+            border-radius: 50%;
+            position: absolute;
+            height: 25px;
+            background-color: white;
+            text-shadow: 1px 1px grey;
+        }
+        .team-red {
+            border-radius: 50%;
+            background-color: red;
+        }
+
+        .team-blue {
+            border-radius: 50%;
+            background-color: blue;
+
+        }
+
+
+
+        .player:hover {
+
+            opacity: 0.7;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="pitch">
+
+    <!-- Goal areas -->
+
+    <div class="goal"></div>
+
+    <div class="goal goal-bottom"></div>
+
+
+
+    <!-- Center circle -->
+
+    <div class="center-circle">
+
+        <div class="center-spot"></div>
+
+    </div>
+    <div class="player point" id="red13" style="top: 20px; left: 130px;">골대</div>
+    <div class="player point" id="red14" style="top: 20px; left: 590px;">골대</div>
+    <div class="player chat" id="red15" style="top: 50%;left: 100%;">채팅 메뉴</div>
+    <div class="player ball" id="red12">공</div>
+    <!-- Players (22 players, 11 per team) -->
+
+    <!-- Team Blue (최적화된 위치) -->
+
+    <div class="player team-blue" id="blue1" style="top: 20px; left: 350px;">player</div> <!-- 골키퍼 -->
+
+    <div class="player team-blue" id="blue2" style="top: 20px; left: 330px;">player</div> <!-- 수비수 -->
+
+    <div class="player team-blue" id="blue3" style="top: 20px; left: 310px;">player</div> <!-- 수비수 -->
+
+    <div class="player team-blue" id="blue4" style="top: 20px; left: 290px;">player</div> <!-- 수비수 -->
+
+    <div class="player team-blue" id="blue5" style="top: 20px; left: 270px;">player</div> <!-- 수비수 -->
+
+    <div class="player team-blue" id="blue6" style="top: 20px; left: 250px;">player</div> <!-- 미드필더 -->
+
+    <div class="player team-blue" id="blue7" style="top: 20px; left: 230px;">player</div> <!-- 미드필더 -->
+
+    <div class="player team-blue" id="blue8" style="top: 20px; left: 210px;">player</div> <!-- 미드필더 -->
+
+    <div class="player team-blue" id="blue9" style="top: 20px; left: 190px;">player</div> <!-- 공격수 -->
+
+    <div class="player team-blue" id="blue10" style="top: 20px; left: 170px;">player</div> <!-- 공격수 -->
+
+    <div class="player team-blue" id="blue11" style="top: 20px; left: 150px;">player</div> <!-- 스트라이커 -->
+
+
+
+    <!-- Team Red (최적화된 위치) -->
+
+    <div class="player team-red" id="red1" style="top: 20px; left: 370px;">강현무</div> <!-- 골키퍼 -->
+
+    <div class="player team-red" id="red2" style="top: 20px; left: 390px;">최준</div> <!-- 수비수 -->
+
+    <div class="player team-red" id="red3" style="top: 20px; left: 410px;">김주성</div> <!-- 수비수 -->
+
+    <div class="player team-red" id="red4" style="top: 20px; left: 430px;">김진수</div> <!-- 수비수 -->
+
+    <div class="player team-red" id="red5" style="top: 20px; left: 450px;">야잔</div> <!-- 수비수 -->
+
+    <div class="player team-red" id="red6" style="top: 20px; left: 470px;">기성용</div> <!-- 미드필더 -->
+
+    <div class="player team-red" id="red7" style="top: 20px; left: 490px;">정승원</div> <!-- 미드필더 -->
+
+    <div class="player team-red" id="red8" style="top: 20px; left: 510px;">이승모</div> <!-- 미드필더 -->
+
+    <div class="player team-red" id="red9" style="top: 20px; left: 530px;">두간지치</div> <!-- 공격수 -->
+
+    <div class="player team-red" id="red10" style="top: 20px; left: 550px;">린가드</div> <!-- 공격수 -->
+
+    <div class="player team-red" id="red11" style="top: 20px; left: 570px;">루카스</div> <!-- 스트라이커 -->
+
+</div>
+
+
+
+<script>
+
+    const socket = new WebSocket("ws://localhost:8080/ws/tactical");
+
+
+
+    socket.onopen = function() {
+
+        console.log("WebSocket 연결 열림.");
+
+    };
+
+
+
+    socket.onmessage = function(event) {
+
+        console.log("받은 메시지: " + event.data);
+
+        let positionData = event.data.split(","); // x,y 데이터 받기
+
+        updatePlayerPosition(positionData[0], positionData[1], positionData[2]);
+
+    };
+
+
+
+    socket.onclose = function() {
+
+        console.log("WebSocket 연결 닫힘.");
+
+    };
+
+
+
+    function updatePlayerPosition(id, x, y) {
+
+        const player = document.getElementById(id);
+
+        if (player) {
+
+            player.style.left = x + "px";
+
+            player.style.top = y + "px";
+
+        }
+
+    }
+
+
+
+    // 마우스로 플레이어 드래그
+
+    let draggedPlayer = null;
+
+    let offsetX, offsetY;
+
+
+
+    document.querySelectorAll(".player").forEach(player => {
+
+        player.addEventListener("mousedown", function(event) {
+
+            draggedPlayer = player;
+
+            offsetX = event.clientX - player.offsetLeft;
+
+            offsetY = event.clientY - player.offsetTop;
+
+            document.addEventListener("mousemove", onMouseMove);
+
+            document.addEventListener("mouseup", onMouseUp);
+
+        });
+
+    });
+
+
+
+    function onMouseMove(event) {
+
+        if (draggedPlayer) {
+
+            draggedPlayer.style.left = (event.clientX - offsetX) + "px";
+
+            draggedPlayer.style.top = (event.clientY - offsetY) + "px";
+
+
+
+            // 서버에 위치 전송
+
+            const positionData = `${draggedPlayer.id},${event.clientX - offsetX},${event.clientY - offsetY}`;
+
+            socket.send(positionData);
+
+        }
+
+    }
+
+
+
+    function onMouseUp() {
+
+        document.removeEventListener("mousemove", onMouseMove);
+
+        document.removeEventListener("mouseup", onMouseUp);
+
+    }
+
+</script>
+</body>
+</html>
